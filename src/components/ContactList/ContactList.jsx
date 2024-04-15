@@ -1,9 +1,23 @@
 import React from "react"
+import { nanoid } from 'nanoid'
+import Contact from '../Contact/Contact'
+import css from './ContactList.module.css'
 
-const ContactList = ({children}) => {
+const ContactList = ({contacts, onDeleteUser}) => {
     return (
         <ul>
-            {children}
+            {contacts.map((contact) => {
+                return (
+                    <li className={css.item} key={nanoid()}>
+                        <Contact 
+                        name={contact.name}
+                        number={contact.number}
+                        id={contact.id}
+                        onDeleteUser={onDeleteUser}
+                        />
+                    </li>
+                );
+            })}
         </ul>
     )
 }

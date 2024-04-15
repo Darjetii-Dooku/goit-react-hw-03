@@ -1,22 +1,16 @@
-import { nanoid } from 'nanoid'
-import css from './Contact.module.css'
-
-const Contact = ({ contacts, onDeleteUser }) => {
-    // console.log(contacts);
+import React from "react"
+const Contact = ({ id, name, number, onDeleteUser }) => {
     return (
-        
         <>
-        {contacts.map(contact => (
-            <li className={css.item} key={nanoid()} >
-                <div>
-                    <p>{contact.name}</p>
-                    <p>{contact.number}</p>
-                </div>
-                <button id={contact.id}  className={css.button} onClick={onDeleteUser} type="button" >
-                    Delete
-                </button>
-            </li>
-        ))}
+            <div>
+        <div>
+          <p>{name}</p>
+        </div>
+        <div>
+          <p>{number}</p>
+        </div>
+      </div>
+      <button type='button' onClick={() => onDeleteUser(id)}>Delete</button>
         </>
     )
 }

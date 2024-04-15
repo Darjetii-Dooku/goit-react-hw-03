@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import ContactList from './components/ContactList/ContactList';
-import Contact from './components/Contact/Contact';
 import SearchBox from './components/SearchBox/SearchBox'
 import ContactForm from './components/ContactForm/ContactForm'
 import { nanoid } from 'nanoid';
@@ -32,9 +31,9 @@ function App() {
    }
    setContacts((prevstate) => [...prevstate, newUser])
  }
- const onDeleteUser = (formData) => {
-  console.dir(formData.target.id);
-  setContacts((prevstate) => prevstate.filter(contact => contact.id !== formData.target.id))
+ const onDeleteUser = (id) => {
+  console.dir(id);
+  setContacts((prevstate) => prevstate.filter(contact => contact.id !== id))
  }
  const filtredUsers = contacts.filter(user => user.name.toLowerCase().includes(filter.toLowerCase()));
 
@@ -44,9 +43,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm onAddUser={onAddUser} />
       <SearchBox filter={filter} onChangeFilter={onChangeFilter}/>
-      <ContactList>
-        <Contact contacts={filtredUsers} onDeleteUser={onDeleteUser} />
-      </ContactList>
+      <ContactList contacts={filtredUsers} onDeleteUser={onDeleteUser} />
       </div>
   )
 }
